@@ -40,8 +40,11 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 }
 func main() {
 	fileServer := http.FileServer(http.Dir("./static")) // telling golang to check out the static directory also too look at the html file
+	// http.Handle is pointing to the index.html in the static folder
 	http.Handle("/", fileServer)                        //start handling your root route send it to the file server
+	//http handle func "/form" id pointing to the form.html file in the static folder.
 	http.HandleFunc("/form", formHandler)               // handle func is inside the http pkg
+	// http/hanflefunc "/hello" is pointing to the to a hello page that is not in the static folder just allows to print hello onto the screen
 	http.HandleFunc("/hello", helloHandler)             // prints out hello to the screen you will need to create a handle func for that.
 
 	fmt.Printf("Starting server at port 8080\n") // this will print once server connects
